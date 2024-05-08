@@ -34,6 +34,12 @@ enum Direction {
 const direction = Direction.Up;
 
 // Types Assertions
+const productName: any = "Mesa";
+
+// let itemId = productName as String;
+let itemID = <string>productName;
+
+
 
 
 console.log(age);

@@ -20,5 +20,16 @@ const people = [
 // Instersections
 const productId = '1'; // Dualidade de tipos
 const tipos = true;
-// Enum
+// Enum 
+var Direction;
+(function (Direction) {
+    Direction[Direction["Up"] = 1] = "Up";
+    Direction[Direction["Down"] = 2] = "Down";
+})(Direction || (Direction = {}));
+;
+const direction = Direction.Up;
+// Types Assertions
+const productName = "Mesa";
+// let itemId = productName as String;
+let itemID = productName;
 console.log(age);
