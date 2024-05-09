@@ -6,7 +6,7 @@ const sum: MathFunc = (num1: number, num2:number): number => {
   return num1 + num2;
 };
 
-const sub: MathFunc = (x:number, y:number) => {
+const sub: MathFunc = (x:number, y:number):number => {
   return x - y;
 }
 

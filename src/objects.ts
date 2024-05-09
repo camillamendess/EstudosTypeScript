@@ -10,17 +10,21 @@ type User = {
   email?: string // ? - Opcional
   password?: string
   orders: Order[]; // Types em conjunto
+  register?(): string
 };
 
 const user: User = {
   firstName: "Jane",
   age: 20,
-  orders: [{productId: "11", price: 200}]
+  orders: [{productId: "11", price: 200}],
+  register() {
+    return "Oi";
+  },
 }
 
 const printLog = (message: string) => {}
 
-printLog(user.password!); // Tira o undefined
+printLog(user.password!); // ! -> Tira o undefined
 
 // Unions - União de props
 type Author = {
@@ -37,7 +41,7 @@ const author: Author & User = {
 
 // Interfaces
 interface UserInterface {
-  readonly firstName: string // Não tem como alterar
+  readonly firstName: string // READONLY - Não tem como alterar
   email: string
 }
 
@@ -56,8 +60,9 @@ const newAuthor: UserInterface & AuthorInterface = {
   books: [],
 }
 
-type Grade = number | string;
+type Grade = number | string; // Algo que não dá pra fazer com interfaces
 const grade: Grade = 1;
 
+// Type e Interface são semelhantes
 
 
