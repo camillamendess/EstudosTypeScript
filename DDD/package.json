@@ -1,0 +1,24 @@
+{
+  "name": "ddd",
+  "version": "1.0.0",
+  "description": "\"A project to study DDD\"",
+  "main": "index.ts",
+  "scripts": {
+    "run": "node index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bun": "^1.1.16",
+    "bun": "^1.1.43",
+    "next": "^15.1.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.6",
+    "@types/react": "^19.0.7",
+    "typescript": "^5.7.3"
+  }
+}
