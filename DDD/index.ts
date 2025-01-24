@@ -1,23 +1,44 @@
-class Address {
+interface ValueObject {
+  equals(other: this): boolean;
+}
+
+class Address implements ValueObject {
   constructor(
     readonly city: string,
     readonly street: string,
     readonly country: string,
-    readonly zip: Zip, // Give a meaningful name to the property, better than string, because string is too generic
-    readonly number: string,) { }
+    readonly zip: Zip,
+    readonly number: string,
+  ) {
+    if (city === undefined) {
+      throw new Error("City is required");
+    }
+  }
+
+  equals(other: this): boolean {
+    return (
+      this.city === other.city &&
+      this.street === other.street &&
+      this.country === other.country &&
+      this.zip.equals(other.zip) &&
+      this.number === other.number
+    );
+  }
 }
 
-class Zip {
-  constructor(
-    readonly value: string) {
+class Zip implements ValueObject {
+  constructor(readonly value: string) {
     if (!/^\d{8}$/.test(value)) {
       throw new Error("Invalid zip code");
     }
   }
-
   // Format to correct format to zip code
   format() {
     return `${this.value.slice(0, 5)}-${this.value.slice(5)}`;
+  }
+
+  equals(other: this): boolean {
+    return this.value === other.value;
   }
 }
 
@@ -81,14 +102,13 @@ class Item {
       throw new Error("Quantity must be positive");
     }
   }
-
+  // Regra de negócio
   getTotal() {
     return this.price.multiply(this.quantity);
   }
 }
 
-
-class Id {
+class Id implements ValueObject {
   constructor(readonly value: string) {
     if (value === undefined) {
       throw new Error("Id is required");
@@ -153,13 +173,13 @@ class Order {
   }
 }
 
-
 const order = new Order(
   Id.generate(),
-  "Camilla",
+  "Christian",
   "Lucas",
   new Address("city", "street", "country", new Zip("12345678"), "number"),
 );
 
-console.log(order);
-console.log(item);
+order.addItem(item);
+
+order.updateItemName(item.id, "Bola de futebol");
