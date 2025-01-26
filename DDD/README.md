@@ -11,3 +11,7 @@ Entities are objects in the application's domain that have a unique identity and
 ### Aggregate
 
 Aggregates are clusters of related entities and value objects that are treated as a single unit for the purpose of data changes. Each aggregate has a root entity, known as the Aggregate Root, which enforces the consistency of changes within the aggregate. External objects or processes should only interact with the aggregate through its root. Aggregates help to define boundaries in the domain model and ensure that business rules and invariants are consistently applied.
+
+### Factory
+
+Factories are design patterns used to create objects, especially complex objects or aggregates, in a controlled and consistent manner. They encapsulate the creation logic and ensure that the created objects are in a valid state. Factories can help to centralize and manage the instantiation process, making the code more maintainable and reducing duplication. They are particularly useful in Domain-Driven Design (DDD) for creating entities and value objects that require complex initialization or need to enforce certain invariants during creation.

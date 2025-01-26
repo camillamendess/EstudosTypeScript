@@ -1,24 +1,59 @@
-import type { Address } from "./common/address";
-import type { Id } from "./common/id";
-import type { Item } from "./item";
-import { Price } from "./common/price";
+import { Address } from "./common/address";
 import { Aggregate } from "./common/aggregate";
+import { Id } from "./common/id";
+import { Price } from "./common/price";
+import type { ToJSON } from "./common/toJSON";
+import { Item } from "./item";
 
 export class Order extends Aggregate {
-  private _items: Item[] = [];
-  public createdAt = new Date();
-
-  constructor(
+  protected constructor(
     readonly id: Id,
-    public customerName: string,
-    public deliveryPerson: string,
+    public customerId: Id,
+    public deliveryPersonId: Id,
     private _address: Address,
+    private _items: Item[],
+    public createdAt: Date,
   ) {
     super();
   }
 
+  static create(input: CreateOrderInput) {
+    return new Order(
+      input.id,
+      input.customerId,
+      input.deliveryPersonId,
+      input.address,
+      [],
+      new Date(),
+    );
+  }
+
+  static fromJSON(input: ToJSON<Order>) {
+    const order = new Order(
+      new Id(input.id),
+      new Id(input.customerId),
+      new Id(input.deliveryPersonId),
+      Address.fromJSON(input.address),
+      input.items.map(Item.fromJSON),
+      new Date(input.createdAt),
+    );
+
+    return order;
+  }
+
+  toJSON() {
+    return {
+      id: this.id.toString(),
+      customerId: this.customerId.toString(),
+      deliveryPersonId: this.deliveryPersonId.toString(),
+      address: this._address.toJSON(),
+      createdAt: this.createdAt.toISOString(),
+      items: this._items.map((item) => item.toJSON()),
+    };
+  }
+
   addItem(item: Item) {
-    const itemAlreadyExists = this._items.find((i) => i.id === item.id);
+    const itemAlreadyExists = this._items.find((i) => i.id.equals(item.id));
     if (itemAlreadyExists) {
       throw new Error("Item already exists");
     }
@@ -46,3 +81,10 @@ export class Order extends Aggregate {
     return this._items;
   }
 }
+
+export type CreateOrderInput = {
+  id: Id;
+  customerId: Id;
+  deliveryPersonId: Id;
+  address: Address;
+};
