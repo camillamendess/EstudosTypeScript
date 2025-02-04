@@ -4,11 +4,11 @@ import { Zip } from "./zip";
 
 export class Address implements ValueObject {
   protected constructor(
-    readonly city: string,
-    readonly street: string,
-    readonly country: string,
-    readonly zip: Zip,
-    readonly number: string,
+    private readonly city: string,
+    private readonly street: string,
+    private readonly country: string,
+    private readonly zip: Zip,
+    private readonly number: string,
   ) { }
 
   static create(input: CreateAddressInput) {

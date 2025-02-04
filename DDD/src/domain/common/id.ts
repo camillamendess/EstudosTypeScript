@@ -7,11 +7,19 @@ export class Id implements ValueObject {
     }
   }
 
+  static fromString(value: string) {
+    return new Id(value);
+  }
+
   static generate() {
     return new Id(Bun.randomUUIDv7());
   }
 
   equals(other: this): boolean {
     return this.value === other.value;
+  }
+
+  toString() {
+    return this.value;
   }
 }

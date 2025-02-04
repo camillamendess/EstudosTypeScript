@@ -1,7 +1,7 @@
-import type { Entity } from "./common/entity";
-import { Id } from "./common/id";
-import { Price } from "./common/price";
-import type { ToJSON } from "./common/toJSON";
+import type { Entity } from "../common/entity";
+import { Id } from "../common/id";
+import { Price } from "../common/price";
+import type { ToJSON } from "../common/toJSON";
 
 export class Item implements Entity {
   protected constructor(

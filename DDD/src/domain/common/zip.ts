@@ -6,12 +6,20 @@ export class Zip implements ValueObject {
       throw new Error("Invalid zip code");
     }
   }
-  // Format to correct format to zip code
+
+  static fromString(value: string) {
+    return new Zip(value);
+  }
+
   format() {
     return `${this.value.slice(0, 5)}-${this.value.slice(5)}`;
   }
 
   equals(other: this): boolean {
     return this.value === other.value;
+  }
+
+  toString() {
+    return this.value;
   }
 }

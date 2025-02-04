@@ -15,3 +15,7 @@ Aggregates are clusters of related entities and value objects that are treated a
 ### Factory
 
 Factories are design patterns used to create objects, especially complex objects or aggregates, in a controlled and consistent manner. They encapsulate the creation logic and ensure that the created objects are in a valid state. Factories can help to centralize and manage the instantiation process, making the code more maintainable and reducing duplication. They are particularly useful in Domain-Driven Design (DDD) for creating entities and value objects that require complex initialization or need to enforce certain invariants during creation.
+
+### Repository
+
+Repositories are a crucial part of the Domain-Driven Design (DDD) pattern, acting as a bridge between the domain and data mapping layers. They provide a way to access and manipulate aggregates and entities from a data store while keeping the domain model free from data access concerns. Repositories abstract the underlying data access implementation, allowing the domain model to focus on business logic. They typically offer methods to add, update, delete, and retrieve entities and aggregates, ensuring that the domain logic remains clean and decoupled from persistence details.
