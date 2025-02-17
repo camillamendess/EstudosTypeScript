@@ -3,7 +3,7 @@ import type { Id } from "../common/id";
 
 export class Customer extends Aggregate {
   constructor(
-    readonly id: Id,
+    readonly _id: Id,
     public name: string,
   ) {
     super();

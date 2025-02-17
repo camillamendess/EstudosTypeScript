@@ -9,7 +9,7 @@ enum DeliveryPersonStatus {
 
 export class DeliveryPerson extends Aggregate {
   constructor(
-    readonly id: Id,
+    readonly _id: Id,
     public name: string,
     public status: DeliveryPersonStatus,
   ) {
@@ -30,7 +30,7 @@ export class DeliveryPerson extends Aggregate {
 
   toJSON() {
     return {
-      id: this.id.toString(),
+      id: this._id.toString(),
       name: this.name,
       status: this.status,
     };

@@ -2,7 +2,7 @@ import { Address } from "../domain/common/address";
 import { Id } from "../domain/common/id";
 import { Price } from "../domain/common/price";
 import { Zip } from "../domain/common/zip";
-import { Item } from "../domain/order/item";
+import { Item } from "../domain/item/item";
 import { Order } from "../domain/order/order";
 import type { OrderRepository } from "../domain/order/repository";
 
